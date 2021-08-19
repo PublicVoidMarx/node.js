@@ -1,15 +1,15 @@
 const express = require('express')
 const app = express()
 
+require('dotenv').config()
+
+//port
 const port = process.env.PORT || 3000
 
 //conexion a la database
 const mongoose = require('mongoose');
 
-const user = 'admin-user'
-const password = 'Database42'
-const database = 'Verduleria'
-const uri = `mongodb+srv://admin-user:Database42@cluster0.739st.mongodb.net/Verduleria?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.739st.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
 
 mongoose.connect(uri, 
     {useNewUrlParser: true, useUnifiedTopology: true}
