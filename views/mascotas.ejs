@@ -1,15 +1,24 @@
 <%- include('templates/cabecera',
-    {titulo:'Mascotas EJS'}
+    {titulo:'Productos EJS'}
 )%>
 
+
+
 <div class="container">
+    
+  <h1>CRUD Mongo</h1>
+
+    <a class="btn btn-success btn-block my-4" href="/mascotas/crear"> 
+        Cargar producto
+    </a>
+
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Accion</th>
+            <th scope="col">Precio</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -18,8 +27,8 @@
                     <tr>
                         <th scope="row"><%= mascota.id %></th>
                         <td><%= mascota.nombre %></td>
-                        <td><%= mascota.descripcion %></td>
-                        <td>@boton</td>
+                        <td><%= mascota.precio %></td>
+                        <td><a class="btn btn-success btn-block" href="mascotas/<%= mascota.id %>">Edit</a> </td>
                       </tr>
                 <% }) %>
             <% } %>

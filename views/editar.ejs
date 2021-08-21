@@ -1,0 +1,28 @@
+<%- include('templates/cabecera',
+    {titulo:'Editar producto'}
+)%><body>
+    <div>
+        <h1>Editar</h1>            
+        <% if(!error) { %>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><%= producto.id %></th>
+                        <td><input type="text" value=<%= producto.nombre %>></td>
+                        <td><input type="number" value=<%= producto.precio %>></td>
+                        <td><a class="btn btn-success btn-block" href="/mascotas">Change</a> </td>
+                        <td><a class="btn btn-danger btn-block">Delete</a></td>
+                        </tr>                       
+                </tbody>
+              </table>
+        <% } %>
+    </div>
+  
+<%- include('templates/footer') %>
