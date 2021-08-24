@@ -3,26 +3,82 @@
 )%><body>
     <div>
         <h1>Editar</h1>            
-        <% if(!error) { %>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><%= producto.id %></th>
-                        <td><input type="text" value=<%= producto.nombre %>></td>
-                        <td><input type="number" value=<%= producto.precio %>></td>
-                        <td><a class="btn btn-success btn-block" href="/mascotas">Change</a> </td>
-                        <td><a class="btn btn-danger btn-block">Delete</a></td>
-                        </tr>                       
-                </tbody>
-              </table>
+          <% if(!error) { %>
+            <form id="editar" data-id="<%= producto.id %>">
+              <input 
+                  type="text"
+                  value="<%= producto.nombre %>"
+                  class="form-control my-2"
+                  name="nombre"
+                  id="nombreInput"
+              >
+              <input 
+                  type="text"
+                  value="<%= producto.precio %>"
+                  class="form-control my-2"
+                  name="precio"
+                  id="precioInput"
+              >
+              <button
+                  class="btn btn-warning btn-sm"
+                  type="submit"
+              >
+                  Change
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                data-id="<%= producto.id %>"
+              >
+                Delete
+              </button>
+          </form>
+          
         <% } %>
     </div>
   
 <%- include('templates/footer') %>
+
+<script>
+  const btnEliminar = document.querySelector('.btn-danger')
+  btnEliminar.addEventListener('click', async() => {
+  const id = btnEliminar.dataset.id
+    try {
+      const data = await fetch(`/mascotas/${id}`,{
+        method:'delete'})
+      const res = await data.json()
+
+      if(res.estado){
+        window.location.href = '/mascotas'
+      }else{
+        console.log(res)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  const formEditar = document.querySelector('#editar')
+  formEditar.addEventListener('submit', async(e) => {
+    e.preventDefault()
+    console.log(formEditar.elements)
+    const nombre = formEditar.elements['nombre'].value
+    const precio = formEditar.elements['precio'].value
+    const id = formEditar.dataset.id
+    
+    const data = await fetch(`/mascotas/${id}`,{
+        method:'PUT',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify({nombre,precio})
+    })
+
+    const res = await data.json()
+
+    if (res.estado) {
+        window.location.href = '/mascotas'
+    }else{
+        console.log(res)
+    }
+  })
+
+</script>
