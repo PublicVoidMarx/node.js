@@ -70,9 +70,6 @@ router.put('/:id', async(req,res) => {
     const id = req.params.id
     const body = req.body
 
-    //console.log('id:',id)
-    //console.log('body: ',body)
-
     try {
         const productoDB = await Producto.findByIdAndUpdate(
             id,body,{useFindAndModify:false}

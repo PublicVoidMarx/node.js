@@ -2,8 +2,29 @@
     {titulo:'Principal EJS'}
 )%>
 
-<h1 class="text-primary">Pagina principal con EJS</h1>
-<h2><%= titulo %></h2>
-<h1>Te falta calle esteban</h1>
+<h1 class="text-primary">Welcome</h1>
+<form name="Signin">
+    <h5>Email</h5>
+    <input 
+        type="email" 
+        name="email" 
+        required>
+    <br>
+    <h5>Password</h3>
+    <input 
+        type="password" 
+        name="password1"       
+        minlength="8" required>
+    <br>
+    <h5>Confirm password</h3>
+    <input  
+        type="password" 
+        name="password1" 
+        minlength="8" required>
+    <br>
+    <button class="btn btn-success btn-block">Log in</button>
+</form>
+
+<div style="background-image: url('background.jpg');"> 
 
 <%- include('templates/footer') %>
