@@ -8,8 +8,8 @@ router.get('/', async(req,res) => {
     try{
         const arrayProductosDB = await Producto.find()
         //console.log(arrayProductosDB)
-        res.render("mascotas", {
-            arrayMascotas: arrayProductosDB
+        res.render("producto", {
+            arrayProductos: arrayProductosDB
         })
     }catch(error){
         console.log(error);
@@ -25,7 +25,7 @@ router.post('/',async(req,res) => {
     const body = req.body
     try {
         await Producto.create(body)
-        res.redirect('mascotas')
+        res.redirect('producto')
     } catch (error) {
         console.log(eror)
     }

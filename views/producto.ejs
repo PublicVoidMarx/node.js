@@ -8,7 +8,7 @@
     
   <h1>CRUD Mongo</h1>
 
-    <a class="btn btn-success btn-block my-4" href="/mascotas/crear"> 
+    <a class="btn btn-success btn-block my-4" href="/producto/crear"> 
         Cargar producto
     </a>
 
@@ -22,13 +22,13 @@
           </tr>
         </thead>
         <tbody>
-            <% if (arrayMascotas.length > 0) { %>
-                <% arrayMascotas.forEach(mascota => { %>
+            <% if (arrayProductos.length > 0) { %>
+                <% arrayProductos.forEach(mascota => { %>
                     <tr>
                         <th scope="row"><%= mascota.id %></th>
                         <td><%= mascota.nombre %></td>
                         <td><%= mascota.precio %></td>
-                        <td><a class="btn btn-success btn-block" href="mascotas/<%= mascota.id %>">Edit</a> </td>
+                        <td><a class="btn btn-success btn-block" href="producto/<%= mascota.id %>">Edit</a> </td>
                       </tr>
                 <% }) %>
             <% } %>

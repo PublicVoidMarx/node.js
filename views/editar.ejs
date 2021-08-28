@@ -43,12 +43,12 @@
   btnEliminar.addEventListener('click', async() => {
   const id = btnEliminar.dataset.id
     try {
-      const data = await fetch(`/mascotas/${id}`,{
+      const data = await fetch(`/producto/${id}`,{
         method:'delete'})
       const res = await data.json()
 
       if(res.estado){
-        window.location.href = '/mascotas'
+        window.location.href = '/producto'
       }else{
         console.log(res)
       }
@@ -66,7 +66,7 @@
     const precio = formEditar.elements['precio'].value
     const id = formEditar.dataset.id
     
-    const data = await fetch(`/mascotas/${id}`,{
+    const data = await fetch(`/producto/${id}`,{
         method:'PUT',
         headers:{'Content-Type': 'application/json'},
         body:JSON.stringify({nombre,precio})
@@ -75,7 +75,7 @@
     const res = await data.json()
 
     if (res.estado) {
-        window.location.href = '/mascotas'
+        window.location.href = '/producto'
     }else{
         console.log(res)
     }
